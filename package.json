@@ -4,6 +4,7 @@
   "description": "paquete para consultar sobre api aemet. Se necesita registro y token de acceso.",
   "main": "main.js",
   "scripts": {
+    "start": "node main.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
