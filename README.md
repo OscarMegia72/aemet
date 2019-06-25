@@ -1,14 +1,19 @@
 # aemet
-Consulta de los valores del clima ofrecidos por Aemet
+## Consulta de los valores del clima ofrecidos por Aemet
 
 Instalación como npm
 ```
-"git+https://github.com/OscarMegia72/aemet.git"
+git+https://github.com/OscarMegia72/aemet.git
 ```
 
 ### Listado de municipio ine de España
-Fuente: http://www.madrid.org/iestadis/fijas/clasificaciones/muni.htm
+Fuente:
+
+https://www.ine.es/daco/daco42/codmun/codmun11/11codmunmapa.htm
+
 Se encuentran en la carpeta doc-ine
-del código del municipio eliminaremos el útlimo digito.
-ejemplo:
-28	Madrid	0105	Alpedrete	280105
+```
+CPRO	CMUN	DC	NOMBRE
+01	001	4	Alegría-Dulantzi
+Concatenamos CPRO y CMUN para obtener el código válido
+```
