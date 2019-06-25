@@ -1,0 +1,29 @@
+{
+  "name": "aemet",
+  "version": "1.0.0",
+  "description": "paquete para consultar sobre api aemet. Se necesita registro y token de acceso.",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/OscarMegia72/aemet.git"
+  },
+  "keywords": [
+    "clima",
+    "aemet",
+    "temperaturas"
+  ],
+  "author": "oscar megía",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/OscarMegia72/aemet/issues"
+  },
+  "homepage": "https://github.com/OscarMegia72/aemet#readme",
+  "dependencies": {
+    "dotenv": "^8.0.0",
+    "moment": "^2.24.0",
+    "request": "^2.88.0"
+  }
+}
