@@ -1,4 +1,3 @@
-'use strict'
 /***
  *     ██████╗ ███████╗ ██████╗ █████╗ ██████╗     ███╗   ███╗███████╗ ██████╗ ██╗ █████╗ 
  *    ██╔═══██╗██╔════╝██╔════╝██╔══██╗██╔══██╗    ████╗ ████║██╔════╝██╔════╝ ██║██╔══██╗
@@ -8,19 +7,16 @@
  *     ╚═════╝ ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═╝    ╚═╝     ╚═╝╚══════╝ ╚═════╝ ╚═╝╚═╝  ╚═╝
  *                                                                                        
  */
-const dotenv = require('dotenv')
-dotenv.config()
 const moment = require('moment')
-var request = require("request");
-let urlPath = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/'
-
-let getMunicipio = (cod_municipio) => {
+const request = require("request");
+const urlPath = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/'
+let getMunicipio = (aemet_api_key,cod_municipio) => {
     return new Promise((resolve, reject) => {
         var options = {
             method: 'GET',
             url: urlPath + cod_municipio,
             headers: {
-                'Authorization': 'Bearer ' + process.env.AEMET_APY_KEY,
+                'Authorization': 'Bearer ' + aemet_api_key,
                 'cache-control': 'no-cache'
             }
         }
@@ -28,11 +24,8 @@ let getMunicipio = (cod_municipio) => {
             if (error) {
                 reject(error)
             }
-
             let tempData = JSON.parse(body)
-            
-            getMuniKey(tempData.datos).then((data) => {
-                
+            getMuniKey(tempData.datos).then((data) => { 
                 resolve(data)
             })
         })
@@ -147,9 +140,12 @@ module.exports = {
 // collado villalba 28047
 
 if (!module.parent) {
-    var municipio='28047'
+    let municipio='28010'
+    let aemet_api_key='paste aemet api key'
     console.info('busco: '+municipio)
-    getMunicipio(municipio).then((data) => {
+    getMunicipio(aemet_api_key,municipio).then((data) => {
         console.log(data)
+    }).catch(e=>{
+        console.log(e)
     })
 }
