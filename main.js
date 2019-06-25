@@ -140,7 +140,7 @@ module.exports = {
 // collado villalba 28047
 
 if (!module.parent) {
-    let municipio='28010'
+    let municipio='	28090'
     let aemet_api_key='paste aemet api key'
     console.info('busco: '+municipio)
     getMunicipio(aemet_api_key,municipio).then((data) => {
