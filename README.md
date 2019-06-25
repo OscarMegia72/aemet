@@ -5,6 +5,8 @@ Instalación como npm
 ```
 git+https://github.com/OscarMegia72/aemet.git
 ```
+### Obtención de api-key
+https://opendata.aemet.es/centrodedescargas/altaUsuario
 
 ### Listado de municipio ine de España
 Fuente:
@@ -19,7 +21,7 @@ Concatenamos CPRO y CMUN para obtener el código válido
 ```
 ### Ejemplo
 ```
-    let municipio='	28090'
+    let municipio='28090'
     let aemet_api_key='paste aemet api key'
     getMunicipio(aemet_api_key,municipio).then((data) => {
         console.log(data)
