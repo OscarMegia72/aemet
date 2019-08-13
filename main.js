@@ -10,27 +10,7 @@
 const moment = require('moment')
 const request = require("request");
 const urlPath = 'https://opendata.aemet.es/opendata/api/prediccion/especifica/municipio/diaria/'
-let getMunicipio = (aemet_api_key,cod_municipio) => {
-    return new Promise((resolve, reject) => {
-        var options = {
-            method: 'GET',
-            url: urlPath + cod_municipio,
-            headers: {
-                'Authorization': 'Bearer ' + aemet_api_key,
-                'cache-control': 'no-cache'
-            }
-        }
-        request(options, function(error, response, body) {
-            if (error) {
-                reject(error)
-            }
-            let tempData = JSON.parse(body)
-            getMuniKey(tempData.datos).then((data) => { 
-                resolve(data)
-            })
-        })
-    })
-}
+
 function getMuniKey(url) {
     return new Promise((resolve, reject) => {
         request(url, function(error, response, body) {
@@ -38,7 +18,7 @@ function getMuniKey(url) {
                 reject(error)
             }
             let jsonAemet = JSON.parse(body)
-            // console.log(body)
+            //-
             let _cielo = getEstadoCielo(jsonAemet)
             let _viento = getViento(jsonAemet)
             let _temperatura = getTemperatura(jsonAemet)
@@ -49,7 +29,6 @@ function getMuniKey(url) {
                 'viento': _viento,
                 'temperatura': _temperatura
             }
-
             resolve(miClima)
         })
     })
@@ -134,18 +113,31 @@ function getPeriodo() {
     return tempHora
 }
 module.exports = {
-    getMunicipio
-}
-// alpedrete 2810
-// collado villalba 28047
-
-if (!module.parent) {
-    let municipio='28090'
-    let aemet_api_key='paste aemet api key'
-    console.info('busco: '+municipio)
-    getMunicipio(aemet_api_key,municipio).then((data) => {
-        console.log(data)
-    }).catch(e=>{
-        console.log(e)
-    })
+    getMunicipio : (aemet_api_key,cod_municipio) => {
+        console.info(aemet_api_key)
+        console.info(cod_municipio)
+        return new Promise((resolve, reject) => {
+            var options = {
+                method: 'GET',
+                url: urlPath + cod_municipio,
+                headers: {
+                    'Authorization': 'Bearer ' + aemet_api_key,
+                    'cache-control': 'no-cache',
+                }
+            }
+            //text/plain;charset=ISO-8859-15
+            request(options, function(error, response, body) {
+                
+                if (error) {
+                   return reject(error)
+                }
+               
+                let tempData = JSON.parse(body)
+                console.info(response.headers)
+                getMuniKey(tempData.datos).then((data) => { 
+                    resolve(data)
+                })
+            })
+        })
+    }
 }
