@@ -114,8 +114,6 @@ function getPeriodo() {
 }
 module.exports = {
     getMunicipio : (aemet_api_key,cod_municipio) => {
-        console.info(aemet_api_key)
-        console.info(cod_municipio)
         return new Promise((resolve, reject) => {
             var options = {
                 method: 'GET',
@@ -127,11 +125,13 @@ module.exports = {
             }
             //text/plain;charset=ISO-8859-15
             request(options, function(error, response, body) {
-                
                 if (error) {
-                   return reject(error)
+                    let myerror={
+                        error: error.message,
+                        options: options
+                    }
+                   return reject(myerror)
                 }
-               
                 let tempData = JSON.parse(body)
                 console.info(response.headers)
                 getMuniKey(tempData.datos).then((data) => { 

@@ -16,9 +16,11 @@ console.log("main.test")
 let municipio='01011'
 let aemet_api_key=process.env.KEY_AEMET
 clima.getMunicipio(aemet_api_key,municipio).then((data) => {
+        console.log(municipio)
+        console.log(aemet_api_key)
         console.log(data)  
 }).catch(e=>{
         console.log("==ERROR AEMET =================")
-        console.log(e.message)
+        console.log(e)
         console.log("===============================")
 })
