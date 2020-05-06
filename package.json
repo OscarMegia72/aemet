@@ -1,7 +1,7 @@
 {
   "name": "aemet",
   "version": "1.5.0",
-  "description": "paquete para consultar sobre api aemet. Se necesita registro y token de acceso.",
+  "description": "debug  - paquete para consultar sobre api aemet. Se necesita registro y token de acceso.",
   "main": "main.js",
   "scripts": {
     "start": "node main.test.js",
