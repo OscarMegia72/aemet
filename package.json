@@ -1,6 +1,6 @@
 {
   "name": "aemet",
-  "version": "1.5.1",
+  "version": "1.5.5",
   "description": "paquete para consultar sobre api aemet. Se necesita registro y token de acceso.",
   "main": "main.js",
   "scripts": {
